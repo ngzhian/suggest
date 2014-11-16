@@ -1,0 +1,120 @@
+.action-wrapper .btn {
+    margin: 1em 0;
+}
+.entity-wrapper .btn {
+    margin: 1em 0;
+}
+.thumbnail {
+    margin: 1em 0;
+}
+.panel-heading .badge {
+    float: right;
+}
+.orange {
+    border: 2px solid rgba(234, 110, 31, 0.8);
+}
+.topic-label {
+    display: inline-block;
+    margin: 0 .3em 0 0;
+}
+.topic-label .btn {
+    margin: 0.1em 0;
+}
+
+.add-link {
+    margin: .3em 0;
+}
+
+.related.ng-enter,
+.related.ng-leave,
+.related.ng-move {
+  -webkit-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -moz-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -ms-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  -o-transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  transition: 400ms cubic-bezier(0.250, 0.250, 0.750, 0.750) all;
+  position: relative;
+  display: block;
+}
+
+.related.ng-enter,
+.related.ng-move {
+  opacity: 0;
+  overflow: hidden;
+}
+
+.related.ng-move.ng-move-active,
+.related.ng-enter.ng-enter-active {
+  opacity: 1;
+  right: 0;
+}
+
+.related.ng-leave {
+  opacity: 1;
+  overflow: hidden;
+}
+
+.related.ng-leave.ng-leave-active,
+.related.ng-enter {
+  opacity: 0;
+  right: -50px;
+} 
+
+/* cross fading between routes with ngView */
+
+.view-container {
+  position: relative;
+}
+
+.view-frame.ng-enter,
+.view-frame.ng-leave {
+  background: white;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+}
+
+.view-frame.ng-enter {
+  -webkit-animation: 0.5s fade-in;
+  -moz-animation: 0.5s fade-in;
+  -o-animation: 0.5s fade-in;
+  animation: 0.5s fade-in;
+  z-index: 100;
+}
+
+.view-frame.ng-leave {
+  -webkit-animation: 0.5s fade-out;
+  -moz-animation: 0.5s fade-out;
+  -o-animation: 0.5s fade-out;
+  animation: 0.5s fade-out;
+  z-index: 99;
+}
+
+@keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-moz-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+@-webkit-keyframes fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-moz-keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+@-webkit-keyframes fade-out {
+  from { opacity: 1; }
+  to { opacity: 0; }
+}
+
+
