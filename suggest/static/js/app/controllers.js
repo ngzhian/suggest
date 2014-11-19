@@ -7,14 +7,11 @@ var suggestApp = angular.module('suggestApp', ['suggestAnimations', 'components'
 suggestApp.controller('relatedCtrl', ['$scope', '$http',
     function($scope, $http) {
         $scope.getRelated = function(content) {
-            // still need the actual DOM to get selectionStart and selectionEnd
             var content = $('#content');
-            if (content.val().length < 500) {
-                $scope.tooShort = true;
-                return;
+            if (!$scope.entities) {
+                $scope.getEntity(content.val().trim())
             }
-            $scope.tooShort = false;
-
+            // still need the actual DOM to get selectionStart and selectionEnd
             $http.post('suggest/', {
                 content: content.val().trim(),
             }).success(function(data, status, headers, config) {
@@ -42,6 +39,9 @@ suggestApp.controller('relatedCtrl', ['$scope', '$http',
         };
         $scope.getEntity = function(content) {
             $scope.tooShort = false;
+            if (!content) {
+                return;
+            }
             $http.post('entity/', {
                 content: content.trim()
             }).success(function(data, status, headers, config) {
