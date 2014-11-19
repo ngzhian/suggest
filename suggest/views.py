@@ -1,9 +1,7 @@
 import logging
-import random
 import json
 import re
 
-from django.conf import settings
 from django.views.decorators.csrf import csrf_exempt
 from django.http import JsonResponse
 from django.shortcuts import render
@@ -12,7 +10,6 @@ import requests
 # from .entities import ENTITIES
 # from .keywords import KEYWORDS
 from alchemyapi_python.alchemyapi import AlchemyAPI
-from .mock_results import RESULTS
 from .models import Article
 
 log = logging.getLogger(__name__)
@@ -72,7 +69,7 @@ def article_search(search_term):
     '''
     Use NYT Article Search API to find articles matching a search term
     '''
-    api_key = '5e97310d68b16ed2a837723181e91fcd:9:70191523'
+    api_key = open('nyt_api_key').read().strip()
     base_url = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q={q}&api-key=' + api_key
     log.debug('searching nyt for: ' + search_term)
     r = requests.get(base_url.format(q=search_term))
@@ -127,3 +124,17 @@ def local_time_db_search(keywords):
             agg[keyword] = []
         agg[keyword].extend(most_relevant_first[:5])
     return agg
+
+
+def example(request):
+    return JsonResponse(dict(result=get_latest_from_time()))
+
+
+def get_latest_from_time():
+    response = requests.get('http://time.com/api/latest/')
+    data = response.json()
+    latest_article = data['articles'][0]
+    html_content = latest_article['content']
+    content = re.sub(r'<[^>]*>', '', html_content)
+    log.debug('content is: ' + content)
+    return content.strip()
