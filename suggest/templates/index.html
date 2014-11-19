@@ -33,11 +33,18 @@
     <h2>find relevant articles to link to</h2>
     <div class="row">
         <div class="col-lg-7">
+            <p>
+            Features entity recognition as-you-type, and will suggest relevant articles via keywords and tags.
+            </p>
+            <p>
+            Hit the Suggest button below and try it!
+            </p>
+            <p ng-class="{'hidden': !new}" class="alert bg-success">
+            The latest article from Time has been loaded as an example, you can also paste in any article.
+            </p>
             <form name="inputform"> 
-                <textarea name="content" class="form-control" ng-model='content' ng-class="{orange: tooShort}" id="content" rows="30" placeholder="Start writing" ng-keyup="keyup($event)" autofocus></textarea>
+                <textarea name="content" class="form-control" ng-model='content' id="content" rows="20" placeholder="Start writing" ng-change="keyup($event)" autofocus></textarea>
             </form>
-
-            <div class="alert alert-danger alert-dismissable" role="alert" ng-show="tooShort">Too short for analysis, need at least 500 letters</div>
 
             <div class="entity-wrapper">
                 <button type="button" class="btn btn-default btn-xs" ng-repeat="entity in entities">
@@ -46,13 +53,13 @@
             </div>
 
             <div class="action-wrapper">
-                <button id="submit" type="button" class="btn btn-primary" ng-click="getRelated(content)">
+                <button id="submit" type="button" class="btn btn-primary cta btn-lg" ng-click="getRelated(content)">
                     Suggest
                 </button>
-                <button type="button" class="btn btn-primary" ng-click="getEntity(content)">
-                    Entities
-                </button>
             </div>
+            <footer>
+                Thanks to <a href="http://time.com/">Time Inc.</a>, <a href="http://www.alchemyapi.com/">AlchemyAPI</a> and <a href="http://developer.nytimes.com/">New York Times</a>
+            </footer>
         </div>
 
 
