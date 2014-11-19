@@ -95,5 +95,18 @@ suggestApp.controller('relatedCtrl', ['$scope', '$http',
                 }
             }
         };
+        $scope.loadExample = function() {
+            console.log('start example');
+            $http.get('example/')
+                .success(function(data, status, headers, config) {
+                    $scope.new = true
+                    setTimeout(function() {
+                        $scope.new = false
+                    }, 2000)
+                    if (data.result) {
+                        $scope.content = data.result;
+                    }
+                });
+        }
     }
 ]);
