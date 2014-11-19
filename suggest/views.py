@@ -72,7 +72,7 @@ def article_search(search_term):
     '''
     Use NYT Article Search API to find articles matching a search term
     '''
-    api_key = settings.NYT_API_KEY
+    api_key = '5e97310d68b16ed2a837723181e91fcd:9:70191523'
     base_url = 'http://api.nytimes.com/svc/search/v2/articlesearch.json?q={q}&api-key=' + api_key
     log.debug('searching nyt for: ' + search_term)
     r = requests.get(base_url.format(q=search_term))
